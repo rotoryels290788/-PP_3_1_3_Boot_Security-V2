@@ -40,13 +40,13 @@ public class Construct {
 
 
         User user = new User("Dmitry", "IT", "dima@.ru",
-                "1", role3); //pass 1
+                "1", role3); 
 
         User user2 = new User("Ivan", "Manager", "Iva@.ru",
-                "2", role2);    //pass 2
+                "2", role2);   
 
         User user3 = new User("Aleksey", "IT", "Aleks@.ru",
-                "3", role);   //pass 3
+                "3", role);  
 
         User user4 = new User("Nikolay", "Nik@.ru", "4");
 
