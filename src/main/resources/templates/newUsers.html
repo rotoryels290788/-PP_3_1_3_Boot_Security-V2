@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<meta charset="UTF-8">
+<title>User</title>
+</head>
+<style>
+    a.button17 {
+        display: inline-block;
+        font-family: arial, sans-serif;
+        font-size: 11px;
+        color: rgb(205, 216, 228);
+        text-shadow: 0 -1px rgb(46, 53, 58);
+        text-decoration: none;
+        user-select: none;
+        line-height: 2em;
+        padding: 1px 1.2em;
+        outline: none;
+        border: 1px solid rgba(33, 43, 52, 1);
+        border-radius: 3px;
+        background: rgb(81, 92, 102) linear-gradient(rgb(81, 92, 102), rgb(69, 78, 87));
+        box-shadow: inset 0 1px rgba(101, 114, 126, 1),
+        inset 0 0 1px rgba(140, 150, 170, .8),
+        0 1px rgb(83, 94, 104),
+        0 0 1px rgb(86, 96, 106);
+    }
+
+    a.button17:active {
+        box-shadow: inset 0 1px 3px rgba(0, 10, 20, .5),
+        0 1px rgb(83, 94, 104),
+        0 0 1px rgb(86, 96, 106);
+    }
+
+    a.button17:focus:not(:active) {
+        border: 1px solid rgb(22, 32, 43);
+        border-bottom: 1px solid rgb(25, 34, 45);
+        background: rgb(53, 61, 71);
+        box-shadow: inset 0 1px 3px rgba(0, 10, 20, .5),
+        0 1px rgb(83, 94, 104),
+        0 0 1px rgb(86, 96, 106);
+        pointer-events: none;
+    }
+</style>
+
+
+<body>
+<form th:method="POST" th:action="@{/admin/newUserAdmin}" th:object="${newUser}">
+    <br><br>
+    <label for="name">Enter Name:</label>
+    <input type="text" th:field="*{name}" id="name"/>
+    <br><br>
+    <label for="department">Enter Department:</label>
+    <input type="text" th:field="*{department}" id="department"/>
+    <br><br>
+    <label for="email">Enter Email:</label>
+    <input type="text" th:field="*{email}" id="email"/>
+    <br><br>
+    <label for="password">Enter Password:</label>
+    <input type="text" th:field="*{password}" id="password"/>
+
+    <p>
+        <label>Roles:
+            <input type="checkbox" name="roleList"
+                   th:each="role : ${roleList}"
+                   th:text="${role.name}"
+                   th:value="${role.getName()}"
+                   th:field="*{roles}"/>
+        </label>
+    </p>
+
+    <input type="submit" value="Добавить"/>
+    <a href="#" class="button17" onclick=location.href="/logout" tabindex="0">Выход </a>
+
+</form>
+</body>
+</html>

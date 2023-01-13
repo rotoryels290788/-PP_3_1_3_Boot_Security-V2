@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+
+    <style>
+        .table_col {
+            font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+            font-size: 14px;
+            width: 660px;
+            background: white;
+            text-align: left;
+            border-collapse: collapse;
+            color: #3E4347;
+        }
+
+        .table_col th:first-child, .table_col td:first-child {
+            color: #F5F6F6;
+            border-left: none;
+        }
+
+        .table_col th {
+            font-weight: normal;
+            border-bottom: 2px solid #F5E1A6;
+            border-right: 20px solid white;
+            border-left: 20px solid white;
+            padding: 8px 10px;
+        }
+
+        .table_col td {
+            border-right: 20px solid white;
+            border-left: 20px solid white;
+            padding: 12px 10px;
+            color: #8b8e91;
+        }
+
+    </style>
+
+    <style>
+        a.button17 {
+            display: inline-block;
+            font-family: arial, sans-serif;
+            font-size: 11px;
+            color: rgb(205, 216, 228);
+            text-shadow: 0 -1px rgb(46, 53, 58);
+            text-decoration: none;
+            user-select: none;
+            line-height: 2em;
+            padding: 1px 1.2em;
+            outline: none;
+            border: 1px solid rgba(33, 43, 52, 1);
+            border-radius: 3px;
+            background: rgb(81, 92, 102) linear-gradient(rgb(81, 92, 102), rgb(69, 78, 87));
+            box-shadow: inset 0 1px rgba(101, 114, 126, 1),
+            inset 0 0 1px rgba(140, 150, 170, .8),
+            0 1px rgb(83, 94, 104),
+            0 0 1px rgb(86, 96, 106);
+        }
+
+        a.button17:active {
+            box-shadow: inset 0 1px 3px rgba(0, 10, 20, .5),
+            0 1px rgb(83, 94, 104),
+            0 0 1px rgb(86, 96, 106);
+        }
+
+        a.button17:focus:not(:active) {
+            border: 1px solid rgb(22, 32, 43);
+            border-bottom: 1px solid rgb(25, 34, 45);
+            background: rgb(53, 61, 71);
+            box-shadow: inset 0 1px 3px rgba(0, 10, 20, .5),
+            0 1px rgb(83, 94, 104),
+            0 0 1px rgb(86, 96, 106);
+            pointer-events: none;
+        }
+    </style>
+
+
+    <title>User</title>
+</head>
+<body>
+
+<table class="table_col">
+    <colgroup>
+        <col style="background:#C7DAF0;">
+    </colgroup>
+    <tbody>
+
+    <tr>
+        <th>Id</th>
+
+        <th>Name</th>
+
+        <th>Department</th>
+
+        <th>Email</th>
+
+        <th>Password</th>
+
+        <th>Role</th>
+
+        <td colspan="5" style="text-align:right"></td>
+    </tr>
+
+    </tbody>
+    <body>
+
+    <a href="#" class="button17" onclick=location.href="/admin/newUserAdmin" tabindex="0">Добавить </a>
+    <a href="#" class="button17" onclick=location.href="/user" tabindex="0">Общая база </a>
+    <a href="#" class="button17" onclick=location.href="/logout" tabindex="0">Выход </a>
+
+    <br><br>
+    </body>
+    <tr th:each="user: ${userList}">
+        <td th:text="${user.id}"></td>
+        <td th:text="${user.name}"></td>
+        <td th:text="${user.department}"></td>
+        <td th:text="${user.email}"></td>
+        <td th:text="${user.password}"></td>
+        <td>
+             <div th:each="role:${user.getRoles()}">[[${role.getName()}]]</div>
+
+        <td><a th:href="@{admin/editUser/{id}(id=${user.id})}"><input type="submit" value="Изменить"/></a></td>
+        <td><form th:method="DELETE" th:action="@{/admin/delete/{id}(id=${user.id})}"><input type="submit"value="Удалить"/></form></td>
+
+    </tr>
+</table>
+
+</body>
+</html>
